@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
 import { filter } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Profile } from '../models/Profile';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,9 @@ export class HomeComponent implements OnInit {
 
   loginDisplay = false;
 
-  constructor(private authService: MsalService, private msalBroadcastService: MsalBroadcastService) { }
+  constructor(private authService: MsalService, 
+    private msalBroadcastService: MsalBroadcastService,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.msalBroadcastService.msalSubject$
@@ -36,5 +41,4 @@ export class HomeComponent implements OnInit {
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
-
 }

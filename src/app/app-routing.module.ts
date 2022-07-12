@@ -1,3 +1,4 @@
+import { WalletComponent } from './wallet/wallet.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
@@ -8,6 +9,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [MsalGuard]
+  },
+  {
+    path: 'wallet',
+    component: WalletComponent,
     canActivate: [MsalGuard]
   },
   {

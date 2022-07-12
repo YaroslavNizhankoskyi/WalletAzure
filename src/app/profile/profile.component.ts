@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Profile } from '../models/Profile';
 
 
-type ProfileType = {
-  givenName?: string,
-  surname?: string,
-  userPrincipalName?: string,
-  id?: string
-};
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +11,9 @@ type ProfileType = {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile!: ProfileType;
+  profile!: Profile;
 
   constructor(
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -27,10 +21,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile() {
-    this.http.get(environment.graphEndpoint)
-      .subscribe(profile => {
-        console.log(profile)
-        this.profile = profile;
-      });
+    let profileData = localStorage.getItem('profileData')
+    this.profile = JSON.parse(profileData)
   }
+
+
 }
