@@ -19,7 +19,8 @@ export class WalletService {
     const headers= new HttpHeaders()
       .set('x-functions-key', AZURE_READ_USER_WALLETS_FUNCTION_CODE)
     
-    return this.http.get(AZURE_READ_USER_WALLETS_FUNCTION_URL + userId, {'headers' : headers})
+    return this.http.get(AZURE_READ_USER_WALLETS_FUNCTION_URL + userId)
+    // {'headers' : headers}
   }
 
   post(wallet: Wallet){
@@ -27,7 +28,7 @@ export class WalletService {
       .set('x-functions-key', AZURE_CREATE_WALLET_FUNCTION_CODE)
       .set('Content-Type', 'application/json')
     
-    return this.http.post(AZURE_CREATE_WALLET_FUNCTION_URL, wallet, {'headers' : headers})
+    return this.http.post(AZURE_CREATE_WALLET_FUNCTION_URL, wallet)
   }
 
 

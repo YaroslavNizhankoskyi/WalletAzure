@@ -16,19 +16,27 @@ import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WalletComponent } from './wallet/wallet.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateWalletComponent } from './create-wallet/create-wallet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WalletInfoComponent } from './wallet-info/wallet-info.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    WalletComponent
-  ],
-  imports: [
+    WalletComponent,
+    CreateWalletComponent,
+      WalletInfoComponent
+   ],
+  imports: [  
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatToolbarModule,
@@ -54,7 +62,8 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       protectedResourceMap: new Map([ 
           [environment.graphEndpoint, [environment.permissions]]
       ])
-    })
+    }),
+    NgbModule
   ],
   providers: [
     {
