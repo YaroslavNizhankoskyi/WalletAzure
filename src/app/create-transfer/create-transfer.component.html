@@ -1,0 +1,38 @@
+<div class="modal-header bg-primary text-white">
+  <h4 class="modal-title" id="modal-basic-title">Create</h4>
+</div>
+<div class="modal-body">
+  <form [formGroup]="transferForm" (ngSubmit)="create()" >
+   
+    <div class="form-group">
+      <label>Category</label>
+      <select          
+        class="form-control"
+        formControlName="category">
+        <option *ngFor="let category of categories">
+          {{category}}
+        </option>
+      </select>   
+    </div>
+
+    <div class="form-group mt-3">
+      <label>Amount</label>
+      <input
+        type="number"
+        required
+
+        class="form-control"
+        placeholder="amount"
+        formControlName="amount"
+      />
+    </div>    
+
+    <div class="modal-footer mt-3">
+      <button class="btn btn-primary mr-2" (click)="modal.dismiss('Cancel')">
+        Cancel
+      </button>
+      <button type="submit" [disabled]="!transferForm.valid" 
+      class="btn btn-success">Create</button>
+    </div>
+  </form>
+</div>

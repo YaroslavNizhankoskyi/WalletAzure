@@ -1,3 +1,79 @@
-<p>
-  wallet-info works!
-</p>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-4 row">
+      <div class="col-md-12">
+        <div class="text-center border container">
+          <img src="../../assets/wallet-passes-app (3).png" style="width: 100%" />
+          <h2 style="color: cornflowerblue" class="centered">
+            {{ wallet.name }}
+          </h2>
+          <h1 style="margin-top: 40px; color: indianred" class="top-centered">
+            $ {{ wallet.amount }}
+          </h1>
+          <button class="btn btn-lg btn-warning bottom-centered" (click)="createTransfer()" style="margin-top: 40px">
+            New transfer
+          </button>
+        </div>
+        <div class="mt-5">
+          <table class="mt-5 table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let transfer of transfers; let i = index">
+                <th scope="row">{{ i }}</th>
+                <td>{{ transfer.amount }}</td>
+                <td>{{ transfer.category }}</td>
+                <td>{{ transfer.date | date: "mediumDate" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+      <div *ngIf="statsLoaded">
+        <app-week-stats [walletId]="wallet.id"></app-week-stats>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-2 d-flex align-items-end flex-column text-center" style="color: indianred">
+      <div style="border: 2px" class="border-bottom border-danger" style="width: 200px">
+        <a [routerLink]="['../../wallet/category']" [queryParams]="{ category: 'education', id: id }">
+          <img src="../../assets/education.png" style="width: 100px; height: 100" alt="wallet" class="col-md-3" />
+          <h3>Education</h3>
+        </a>
+      </div>
+      <div style="border: 2px" class="border-bottom border-danger" style="width: 200px">
+        <a [routerLink]="['../../wallet/category']" [queryParams]="{ category: 'medicine', id: id }">
+          <img src="../../assets/medicine.png" style="width: 100px; height: 100" alt="wallet" class="col-md-3" />
+          <h3>Medicine</h3>
+        </a>
+      </div>
+      <div style="border: 2px" class="border-bottom border-danger" style="width: 200px">
+        <a [routerLink]="['../../wallet/category']" [queryParams]="{ category: 'traveling', id: id }">
+          <img src="../../assets/world.png" style="width: 100px; height: 100" alt="wallet" class="col-md-3" />
+          <h3>Traveling</h3>
+        </a>
+      </div>
+      <div style="border: 2px" class="border-bottom border-danger" style="width: 200px">
+        <a [routerLink]="['../../wallet/category']" [queryParams]="{ category: 'clothes', id: id }">
+          <img src="../../assets/tshirt.png" style="width: 100px; height: 100" alt="wallet" class="col-md-3" />
+          <h3>Clothes</h3>
+        </a>
+      </div>
+      <div style="border: 2px" style="width: 200px">
+        <a [routerLink]="['../../wallet/category']" [queryParams]="{ category: 'entertainment', id: id }">
+          <img src="../../assets/popcorn.png" style="width: 100px; height: 100" alt="wallet" class="col-md-3" />
+          <h3>Entertainment</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { WalletCategoryComponent } from './wallet-category/wallet-category.component';
 import { WalletInfoComponent } from './wallet-info/wallet-info.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { NgModule } from '@angular/core';
@@ -18,8 +19,13 @@ const routes: Routes = [
     canActivate: [MsalGuard]
   },
   {
-    path: 'wallet-info',
+    path: 'wallet/info',
     component: WalletInfoComponent,
+    canActivate: [MsalGuard]
+  },
+  {
+    path: 'wallet/category',
+    component: WalletCategoryComponent,
     canActivate: [MsalGuard]
   },
   {

@@ -1,3 +1,4 @@
+import { WeekStatsComponent } from './stats/week-stats/week-stats.component';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,17 +21,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WalletInfoComponent } from './wallet-info/wallet-info.component';
+import { CreateTransferComponent } from './create-transfer/create-transfer.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { WalletCategoryComponent } from './wallet-category/wallet-category.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
     HomeComponent,
     ProfileComponent,
     WalletComponent,
     CreateWalletComponent,
-      WalletInfoComponent
+      WalletInfoComponent,
+      CreateTransferComponent,
+      WeekStatsComponent,
+      WalletCategoryComponent
    ],
   imports: [  
     FormsModule,
@@ -41,12 +48,15 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     MatButtonModule,
     MatToolbarModule,
     MatListModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     HttpClientModule,
     MsalModule.forRoot( new PublicClientApplication({
       auth: {
         clientId: environment.clientId,
         authority: `${environment.cloudInstance}/${environment.authority}`, 
-        redirectUri: environment.redirectUri
+        redirectUri: environment.redirectUri,
       },
       cache: {
         cacheLocation: environment.cacheLocation,
@@ -55,12 +65,14 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     }), {
       interactionType: InteractionType.Redirect, 
       authRequest: {
-        scopes: [environment.permissions]
+        scopes: [environment.permissions, "api://ba7c7804-3794-4739-abb3-8ae9525454a7/user_impersonation"]
       }
     }, {
       interactionType: InteractionType.Redirect, 
       protectedResourceMap: new Map([ 
-          [environment.graphEndpoint, [environment.permissions]]
+          [environment.graphEndpoint, [environment.permissions]],
+          ["https://wallet-app-niz.azurewebsites.net",
+           ["api://ba7c7804-3794-4739-abb3-8ae9525454a7/user_impersonation"]]
       ])
     }),
     NgbModule

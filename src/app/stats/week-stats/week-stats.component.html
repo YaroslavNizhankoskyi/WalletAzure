@@ -1,0 +1,8 @@
+<div *ngIf="statsLoaded">
+    <echarts [initOpts]="initOpts" [options]="options"></echarts>
+    <div class="row mt-4 text-center">
+        <ul class="list-group">
+            <li class="list-group-item">Weekly earning: {{stats.weeklyIncome}}</li>
+          </ul>
+    </div>
+</div>
