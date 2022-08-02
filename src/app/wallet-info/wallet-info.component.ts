@@ -41,12 +41,6 @@ export class WalletInfoComponent implements OnInit {
         console.log(x)
         this.transfers = x
       })
-
-      this.walletService.getTransfersWeekStats(this.id).subscribe(x => {
-        this.stats = x
-        console.log(this.stats)
-        this.statsLoaded = true;
-      })
     })
 
   }

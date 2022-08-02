@@ -33,8 +33,8 @@ export class WalletService {
     return this.http.post(AZURE_CREATE_TRANSFER_URL, transfer)
   }
 
-  getTransfersWeekStats(walletId: string){     
-    return this.http.get(AZURE_WALLETS + walletId + '/transfers/stats')
+  getTransfersWeekStats(walletId: string, days: number){     
+    return this.http.get(AZURE_WALLETS + walletId + '/transfers/stats/days/' + days)
   }
 
   getAllWalletTransfers(walletId: string){

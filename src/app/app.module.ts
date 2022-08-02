@@ -24,11 +24,12 @@ import { WalletInfoComponent } from './wallet-info/wallet-info.component';
 import { CreateTransferComponent } from './create-transfer/create-transfer.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { WalletCategoryComponent } from './wallet-category/wallet-category.component';
+import { TransfersPieChartComponent } from './transfers-pie-chart/transfers-pie-chart.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     HomeComponent,
     ProfileComponent,
@@ -37,7 +38,8 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       WalletInfoComponent,
       CreateTransferComponent,
       WeekStatsComponent,
-      WalletCategoryComponent
+      WalletCategoryComponent,
+      TransfersPieChartComponent
    ],
   imports: [  
     FormsModule,

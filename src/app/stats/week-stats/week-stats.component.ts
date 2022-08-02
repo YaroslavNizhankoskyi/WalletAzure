@@ -18,9 +18,13 @@ export class WeekStatsComponent implements OnInit {
   options: any;
 
   ngOnInit() {
-    this.walletService.getTransfersWeekStats(this.walletId).subscribe(x => {
+    console.log(this.walletId)
+
+    this.walletService.getTransfersWeekStats(this.walletId, 6).subscribe(x => {
       this.stats = x
       this.statsLoaded = true;
+
+      console.log(this.stats)
   
       this.initOpts = {
         renderer: 'svg',
